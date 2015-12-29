@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 
@@ -27,12 +28,15 @@ namespace Borderless
 
         public static void Main(string[] args)
         {
+            var argumentString = args.Skip(1).Aggregate(string.Empty, (current, param) => current + param + " ");
+
             var startInfo = new ProcessStartInfo
             {
                 CreateNoWindow = false,
                 UseShellExecute = false,
                 FileName = args[0],
-                WindowStyle = ProcessWindowStyle.Normal
+                WindowStyle = ProcessWindowStyle.Normal,
+                Arguments = argumentString
             };
 
 
