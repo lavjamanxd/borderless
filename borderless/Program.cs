@@ -35,8 +35,7 @@ namespace Borderless
                 WindowStyle = ProcessWindowStyle.Normal
             };
 
-            try
-            {
+
                 using (var proc = Process.Start(startInfo))
                 {
                     while (proc.MainWindowHandle == (IntPtr)0)
@@ -50,11 +49,6 @@ namespace Borderless
                     var gwlExStyle = GetWindowLong(pFoundWindow, GWL_EXSTYLE);
                     SetWindowLong(pFoundWindow, GWL_EXSTYLE, gwlExStyle & ~(WS_EX_WINDOWEDGE));
                 }
-            }
-            catch
-            {
-                // Log error.
-            }
         }
     }
 }
